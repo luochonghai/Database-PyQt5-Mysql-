@@ -4,6 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
 import interface
+import test
 import pymysql.cursors
 
 class LoginDialog(QDialog):   
@@ -26,6 +27,7 @@ class LoginDialog(QDialog):
         self.loginBtn = QPushButton('Login', self)   
         self.loginBtn.move(100, 90)   
         self.loginBtn.clicked.connect(self.login) # 绑定方法判断用户名和密码   
+        self.loginBtn.clicked.connect(self.testing)
     def login(self):   
         # Connect to the database
         connection = pymysql.connect(host='127.0.0.1',
@@ -52,6 +54,11 @@ class LoginDialog(QDialog):
             raise e
         finally:
             connection.close()
+    
+    def testing(self):
+        self.IData = test.IniDialog()
+        #self.IData.show()
+
   
 if __name__ == '__main__':   
     app = QApplication(sys.argv)   
