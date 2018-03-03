@@ -3,6 +3,7 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+import inputCheck
 import pymysql.cursors
 
 showlist = ["" for i in range(19)]
@@ -148,6 +149,18 @@ class InputDialog(QWidget):
         showlist[18] = self.text19.text()
 
         try:
+            #add the function of checking input 
+            for i in range(2,19):
+                str_temp = inputCheck.str_check(showlist[i])
+                if str_temp == -1:
+                    QMessageBox.critical(self, 'Error', 'Strange characters.')
+                    return
+                elif str_temp == -2:
+                    QMessageBox.critical(self, 'Error', 'The length of decimal is longer then 2.')
+                    return
+                elif str_temp == -3:
+                    QMessageBox.critical(self, 'Error', 'Empty input.')
+                    return
             temp.execute(sql_ser%(showlist[0],showlist[1]))
             res_ser = temp.fetchall()
             if len(res_ser) == 0:
