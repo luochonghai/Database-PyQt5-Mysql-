@@ -10,4 +10,5 @@ PJ_Of_Accounting_Books
       Plan1:to use mysql's type--decimal(a,b) to solve the problem; to check whether decimals(without other ch-
       aracters) are input before data storing.
       Plan2:to write another routine to process negative or decimals calculation.
+      
       180303:choose Plan1 and finish it roughly.
